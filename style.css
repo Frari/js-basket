@@ -1,0 +1,23 @@
+*{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  height: 700px;
+  width: 70%;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+.lista, .statistiche{
+  border: 1px solid black;
+  height: 100%;
+  float: left;
+}
+.lista{
+  width: 40%;
+}
+.statistiche{
+  width: 60%;
+}
