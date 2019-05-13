@@ -17,8 +17,8 @@ function randomString(length, chars) {
     for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
 }
-var rString = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-console.log(rString);
+// var rString = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+// console.log(rString);
 
 
 for(i=0;i<100;i++){
@@ -34,14 +34,26 @@ for(i=0;i<100;i++){
 
   giocatore.punti=Math.floor(Math.random()*50)+1;
 
-  randomString();
-  giocatore.codice+= rString;
+  giocatore.codice = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
   giocatore.rimbalzi=Math.floor(Math.random()*50)+1;
   giocatore.falli=Math.floor(Math.random()*50)+1;
   giocatore.percSucc2punti=Math.floor(Math.random()*100)+1+'%';
   giocatore.percSucc3punti=Math.floor(Math.random()*100)+1+'%';
 
-  console.log(giocatore);
+  lista_giocatori.push(giocatore);
+
+  // for(var field in giocatore){
+  //   console.log(giocatore[field]);
+  // }
+  $('.codici').addClass('item');
+  var codice = giocatore.codice;
+  console.log(codice);
+  $('.codici.item').append(codice);
 
 }
+
+// for(i=0;i<100;i++){
+//   var valore=$(codice).val();
+//   $('.codici').append(valore);
+// }
