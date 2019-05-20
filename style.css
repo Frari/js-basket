@@ -7,3 +7,9 @@
 #player_statistics{
   display: none;
 }
+.lista{
+  width: 100px;
+  height: 400px;
+  overflow: auto;
+  margin: 100px;
+}

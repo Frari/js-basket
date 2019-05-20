@@ -63,15 +63,18 @@ for (var i = 0; i < 100; i++) {
   var player = generate_player();
   players.push(player);
 }
-// for (var i = 0; i < players.length; i++) {
-var player_code = player.codice
+
+for (var i = 0; i < players.length; i++) {
 
 var template_html = $('#codes_template').html();
 var template_function = Handlebars.compile(template_html);
+var player_code = players[i].codice
+
 var variabile={
-  'codice':player_codes
+  'codice': player_code
 }
+
  var html_finale = template_function(variabile);
- console.log(html_finale);
  $('#player_list').append(html_finale)
-// }
+
+};
