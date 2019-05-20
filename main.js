@@ -8,52 +8,63 @@
 // - Percentuale di successo per tiri da 3 punti
 // Tutti i giocatori verranno visualizzati tramite il loro codice (in una select, una lista, …).
 // Una volta cliccato sul codice giocatore, nel corpo principale verranno visualizzate le statistiche corrispondenti.
-
-// creo oggetto Giocatore
-var lista_giocatori=[];
-
-function randomString(length, chars) {
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-    return result;
-}
-// var rString = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-// console.log(rString);
-
-
-for(i=0;i<100;i++){
-
-  var giocatore = {
-    'codice':'',
-    'punti':0,
-    'rimbalzi':0,
-    'falli':0,
-    'percSucc2punti':0,
-    'percSucc3punti':0
-  };
-
-  giocatore.punti=Math.floor(Math.random()*50)+1;
-
-  giocatore.codice = randomString(6, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-
-  giocatore.rimbalzi=Math.floor(Math.random()*50)+1;
-  giocatore.falli=Math.floor(Math.random()*50)+1;
-  giocatore.percSucc2punti=Math.floor(Math.random()*100)+1+'%';
-  giocatore.percSucc3punti=Math.floor(Math.random()*100)+1+'%';
-
-  lista_giocatori.push(giocatore);
-
-  // for(var field in giocatore){
-  //   console.log(giocatore[field]);
-  // }
-  $('.codici').addClass('item');
-  var codice = giocatore.codice;
-  console.log(codice);
-  $('.codici.item').append(codice);
-
+function number_generator(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-// for(i=0;i<100;i++){
-//   var valore=$(codice).val();
-//   $('.codici').append(valore);
+var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var player_codes = [];
+
+// creo una funcione per generare un Giocatore
+function generate_player() {
+
+  var player_code = '';
+  do {
+    player_code = '';
+    // genero 3 lettere e le concateno al codice del giocatore
+    for (var i = 0; i < 3; i++) {
+      var char_position = number_generator(0,25);
+      var char = characters.charAt(char_position);
+      player_code += char;
+    }
+    // genero 3 cifre e le concateno al codice del giocatore
+    for (var i = 0; i < 3; i++) {
+      player_code += number_generator(0,9);
+    }
+  } while(player_codes.includes(player_code));
+
+  player_codes.push(player_code);
+
+  // genero numero di punti, rimbalzi e Falli
+  var punti = number_generator(0, 40);
+  var rimbalzi = number_generator(0,200);
+  var falli = number_generator(0,5);
+
+  // genero le percentuali per i tiri da 2 e 3 punti
+  var perc_2 = (number_generator(0,1000) / 10).toFixed(1);
+  var perc_3 = (100 - perc_2).toFixed(1);
+
+  // costruisco un oggetto giocatore
+  var player = {
+    'codice': player_code,
+    'punti': punti,
+    'rimbalzi': rimbalzi,
+    'falli': falli,
+    'perc_2': perc_2,
+    'perc_3': perc_3
+  }
+
+  return player;
+
+}
+var players = [];
+// genero 100 oggetti giocatore
+for (var i = 0; i < 100; i++) {
+  var player = generate_player();
+  players.push(player);
+}
+// for (var i = 0; i < players.length; i++) {
+
+var template_html = $('#statistiche_template').html();
+console.log(template_html);
 // }

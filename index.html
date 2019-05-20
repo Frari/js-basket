@@ -4,20 +4,38 @@
     <meta charset="utf-8">
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
-      <div class="lista">
+    <ul id="player_list">
 
-        <ul class="codici">
-          <li class="item"></li>
-        </ul>
+    </ul>
+
+    <div id="player_statistics">
+      <h1 class="player_code_container">
+      </h1>
+      <div class="punti">
+        <h2>Punti fatti: <span></span></h2>
       </div>
-      <div class="statistiche">
-
+      <div class="rimbalzi">
+        <h2>Rimbalzi: <span></span></h2>
+      </div>
+      <div class="falli">
+        <h2>Falli: <span></span></h2>
+      </div>
+      <div class="tiri_2">
+        <h2>Tiri da 2 punti (%): <span></span></h2>
+      </div>
+      <div class="tiri_3">
+        <h2>Tiri da 3 punti (%): <span></span></h2>
       </div>
     </div>
+
     <script src="main.js" charset="utf-8"></script>
+
+    <script id="statistiche_template" type="text/x-handlebars-template">
+      <li>{{ player_code }}</li>
+    </script>
   </body>
 </html>
