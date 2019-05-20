@@ -64,7 +64,14 @@ for (var i = 0; i < 100; i++) {
   players.push(player);
 }
 // for (var i = 0; i < players.length; i++) {
+var player_code = player.codice
 
-var template_html = $('#statistiche_template').html();
-console.log(template_html);
+var template_html = $('#codes_template').html();
+var template_function = Handlebars.compile(template_html);
+var variabile={
+  'codice':player_codes
+}
+ var html_finale = template_function(variabile);
+ console.log(html_finale);
+ $('#player_list').append(html_finale)
 // }
